@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Choice from '../Choice';
 import CreditSlider from '../CreditSlider';
 import LoanSlider from '../LoanSlider';
 import MoneyInput from '../MoneyInput';
 import TextInput from '../TextInput';
+import axios from 'axios';
 import './Application.css';
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 interface ApplicationProps {
   loanAmount: number,
@@ -23,6 +26,8 @@ const Application = ({loanAmount, setLoanAmount}:ApplicationProps) => {
   const [step, setStep] = useState<number>(0);
   const [intrestRate, setIntrestRate] = useState<number>(0.0623);
   const [creditScore, setCreditScore] = useState<number>(720);
+  const [approved, setApproved] = useState<boolean | undefined>(undefined);
+  const termLength = 240;
 
   const formIsValid = () => {
     const emailValid = email !== '';
@@ -70,18 +75,70 @@ const Application = ({loanAmount, setLoanAmount}:ApplicationProps) => {
 
   const step2Markup = (
     <>
-      <LoanSlider loanAmount={loanAmount} setLoanAmount={setLoanAmount} intrestRate={intrestRate} submitText='Submit Application' onSubmit={() => setStep(3)}/>
+      <LoanSlider termLength={termLength} loanAmount={loanAmount} setLoanAmount={setLoanAmount} intrestRate={intrestRate} submitText='Submit Application' onSubmit={() => setStep(3)}/>
     </>
   );
 
+  const step3Markup = (
+    <>
+      <div className='loader'></div>
+    </>
+  );
+
+  useEffect(() => {
+    if (step === 3) {
+      console.log(`Request Made`);
+      axios.post(`${API_URL}/apply`, {
+        email: email,
+        first: first,
+        last: last,
+        married: married,
+        dependents: dependents,
+        education: education,
+        selfEmployed: selfEmployed,
+        income: income,
+        intrestRate: intrestRate,
+        creditScore: creditScore,
+        loanAmount: loanAmount,
+        termLength: termLength,
+      }).then((response) => {
+        setApproved(response.data.approved);
+        setStep(4);
+      })
+    }
+  }, [creditScore, dependents, education, email, first, income, intrestRate, last, loanAmount, married, selfEmployed, step]);
+
   return (
     <div className='application'>
-      <h1 className='application-title'>Loan Application</h1>
-      <div className='application-form'>
-        {step === 0 && step0Markup}
-        {step === 1 && step1Markup}
-        {step === 2 && step2Markup}
-      </div>
+      { approved === undefined &&
+      <>
+        <h1 className='application-title'>Loan Application</h1>
+        <div className='application-form'>
+          {step === 0 && step0Markup}
+          {step === 1 && step1Markup}
+          {step === 2 && step2Markup}
+          {step === 3 && step3Markup}
+        </div>
+      </>
+      }
+      {
+        approved !== undefined &&
+        <div className='approval'>
+          {
+            approved &&
+            <>
+              <h1 className='approval-emoji'>🎉🎉🎉</h1>
+              <h1 className='approval-text'>Congrats your application has been approved</h1>
+            </>
+          }
+          {
+            approved === false &&
+            <>
+              <h1 className='approval-text-sm'>Sorry, some parts of your application do not meet our requirements.</h1>
+            </>
+          }
+        </div>
+      }
     </div>
   );
 }

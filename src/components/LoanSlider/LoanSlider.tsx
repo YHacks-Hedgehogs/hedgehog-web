@@ -9,15 +9,16 @@ interface LoanSliderProps {
   max?: number,
   submitText: string,
   onSubmit: any,
+  termLength?: number,
 }
 
-const LoanSlider = ({loanAmount, setLoanAmount, intrestRate, min, max, submitText, onSubmit}:LoanSliderProps) => {
+const LoanSlider = ({loanAmount, setLoanAmount, intrestRate, min, max, submitText, onSubmit, termLength}:LoanSliderProps) => {
   const loanMinimum = min ? min : 50000;
   const loanMaximum = max ? max : 1000000;
   const loanStep = 5000;
   const annualIntrestRate = intrestRate ? intrestRate : .0623;
   const monthlyIntrestRate = annualIntrestRate / 12;
-  const termMonths = 240;
+  const termMonths = termLength ? termLength : 240;
   const principle = Number(loanAmount);
   const termYears = termMonths / 12;
   const monthlyCost = principle * (monthlyIntrestRate * (1 + monthlyIntrestRate) ** termMonths) / ((1 + monthlyIntrestRate) ** termMonths - 1);

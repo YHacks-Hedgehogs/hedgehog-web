@@ -36,3 +36,42 @@
   justify-content: space-between;
   gap: 5%
 }
+
+.loader {
+  border: .4rem solid #f3f3f3; /* Light grey */
+  border-top: .4rem solid #7A88F2; /* Blue */
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  animation: spin .5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.approval {
+  width: 90vw;
+  max-width: 600px;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.approval-emoji {
+  font-size: 100px;
+  margin-bottom: 0px;
+}
+
+.approval-text {
+  margin-top: 0px;
+  font-size: 50px;
+}
+
+.approval-text-sm {
+  font-size: 36px;
+}

@@ -12,9 +12,9 @@ const Choice = ({selected, setSelected, choices}:ChoiceProps) => {
   return (
     <div className='choices'>
       {
-        choices.map((choice) => {
+        choices.map((choice, index) => {
           return (
-            <button className={ choice === selected ? 'choice choice-selected' : 'choice' } onClick={() => setSelected(choice)}>{choice}</button>
+            <button key={index} className={ choice === selected ? 'choice choice-selected' : 'choice' } onClick={() => setSelected(choice)}>{choice}</button>
           );
         })
       }
