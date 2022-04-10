@@ -1,0 +1,29 @@
+.money-input-container {
+  margin-top: 0px;
+  width: 95%;
+  background-color: #393E46;
+  color: #EEEEEE;
+  padding: 8px 10px;
+  font-size: 18px;
+  border: 1px solid #EEEEEE1F;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.money-input {
+  width: 90%;
+  background-color: transparent;
+  color: #EEEEEE;
+  font-size: 18px;
+  border: none;
+}
+
+.money-input:focus {
+  outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

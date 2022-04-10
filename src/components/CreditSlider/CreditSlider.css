@@ -1,0 +1,71 @@
+.credit-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  background-color: #393E46;
+  border-radius: 10px;
+  padding: 15px 15px;
+}
+
+.credit-slider-title {
+  align-self: flex-start;
+  font-size: 24px;
+}
+
+.credit-slider-range {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 5px;
+  border-radius: 6px;
+  background: #f1f1f1;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+.credit-slider-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #7A88F2;
+  border: #7A88F2 5px solid;
+  cursor: ew-resize;
+  -webkit-transition: background .15s ease-in-out;
+  transition: background .15s ease-in-out;
+}
+
+.credit-slider-amounts {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.credit-slider-amount-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  text-align: left;
+}
+
+.credit-slider-amount-container-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  text-align: right;
+}
+
+.credit-slider-amount {
+  margin-bottom: 0px;
+  font-size: 36px;
+}
+
+.credit-slider-amount-label {
+  margin-top: 5px;
+  font-size: 18px;
+}

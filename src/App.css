@@ -22,6 +22,12 @@
   font-weight: 600;
   color: #EEEEEE;
   text-decoration: none;
+  border: none;
+}
+
+.btn-muted {
+  background-color: #393E46;
+  color: #222831;
 }
 
 .btn-sm {
@@ -30,4 +36,10 @@
 
 .btn:hover {
   background-color: #7a88f2d0;
+  cursor: pointer;
+}
+
+.btn-muted:hover {
+  background-color: #393E46;
+  cursor: default;  
 }
