@@ -7,15 +7,17 @@ interface LoanSliderProps {
   intrestRate?: number,
   min?: number,
   max?: number,
+  submitText: string,
+  onSubmit: any,
 }
 
-const LoanSlider = ({loanAmount, setLoanAmount, intrestRate, min, max}:LoanSliderProps) => {
+const LoanSlider = ({loanAmount, setLoanAmount, intrestRate, min, max, submitText, onSubmit}:LoanSliderProps) => {
   const loanMinimum = min ? min : 50000;
   const loanMaximum = max ? max : 1000000;
   const loanStep = 5000;
   const annualIntrestRate = intrestRate ? intrestRate : .0623;
   const monthlyIntrestRate = annualIntrestRate / 12;
-  const termMonths = 360;
+  const termMonths = 240;
   const principle = Number(loanAmount);
   const termYears = termMonths / 12;
   const monthlyCost = principle * (monthlyIntrestRate * (1 + monthlyIntrestRate) ** termMonths) / ((1 + monthlyIntrestRate) ** termMonths - 1);
@@ -58,7 +60,7 @@ const LoanSlider = ({loanAmount, setLoanAmount, intrestRate, min, max}:LoanSlide
           <h2 className='loan-slider-stat'>{termYears}</h2>
         </div>
       </div>
-      <a href='/apply' className='btn btn-primary w-100'>Apply Today</a>
+      <button className='btn w-100' onClick={() => onSubmit()}>{submitText}</button>
     </div>
   );
 }

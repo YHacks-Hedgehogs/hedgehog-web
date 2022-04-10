@@ -1,0 +1,38 @@
+.application {
+  min-height: 90vh;
+  width: 90%;
+  max-width: 500px;
+  background-color: #222831;
+  color: #EEEEEE;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.application-title {
+  font-size: 36px;
+  text-align: center;
+}
+
+.application-form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-label {
+  width: 98%;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.input-group {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5%
+}
